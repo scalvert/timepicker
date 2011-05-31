@@ -907,6 +907,9 @@
             var newTime = h + this._get(inst, 'timeSeparator') + m;
             if (period.length > 0) { newTime += " " + period; }
 
+            var onBeforeSelect = this._get(inst, 'onBeforeSelect');
+            if (onBeforeSelect) { onBeforeSelect.apply((inst.input ? inst.input[0] : null), [newTime, inst]); } // trigger custom callback           
+
             if (inst.input) {
                 inst.input.val(newTime);
                 inst.input.trigger('change');
